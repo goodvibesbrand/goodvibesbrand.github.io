@@ -401,16 +401,16 @@
             const textStartY = (H * 0.42) - (totalTextHeight / 2) + (lineHeight / 2);
             
             // ===== WRAPPING DECORATIVE QUOTES =====
-            // Large curly quotes that "hug" the quote text
+            // Large curly quotes that visually frame the quote text (like bookends)
             ctx.save();
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
-            ctx.font = '200px Georgia, serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+            ctx.font = '500px Georgia, serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            // Opening quote: upper-left of text block
-            ctx.fillText('\u201C', W * 0.22, textStartY - lineHeight * 0.3);
-            // Closing quote: lower-right of text block  
-            ctx.fillText('\u201D', W * 0.78, textStartY + totalTextHeight - lineHeight * 0.5);
+            // Opening quote: top-left of text area
+            ctx.fillText('\u201C', W * 0.18, H * 0.30);
+            // Closing quote: bottom-right of text area
+            ctx.fillText('\u201D', W * 0.82, H * 0.62);
             ctx.restore();
             
             lines.forEach((line, index) => {
