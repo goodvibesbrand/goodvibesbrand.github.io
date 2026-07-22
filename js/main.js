@@ -142,6 +142,13 @@
     function displayQuote(index) {
         if (state.isAnimating || !state.quotes[index]) return;
         
+        // Safety: ensure DOM elements exist
+        if (!DOM.quoteCard || !DOM.quoteText) {
+            console.warn('DOM elements not ready, retrying...');
+            setTimeout(() => displayQuote(index), 100);
+            return;
+        }
+        
         state.isAnimating = true;
         state.currentQuoteIndex = index;
         state.currentQuote = state.quotes[index];
