@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Image Template Designer | Good Vibes Only</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Editor Styles -->
+    <link rel="stylesheet" href="css/qotdedit.css">
+</head>
+<body class="editor-body">
+    <!-- ===== TOP BAR ===== -->
+    <header class="editor-header">
+        <div class="header-left">
+            <h1 class="editor-logo">🎨 Template Designer</h1>
+            <span class="editor-subtitle">Good Vibes Only — Quote Image Editor</span>
+        </div>
+        <div class="header-right">
+            <button id="btn-preview" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                Preview
+            </button>
+            <button id="btn-save-template" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+                Save Template
+            </button>
+            <button id="btn-export" class="btn btn-accent">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"/></svg>
+                Export HTML
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== MAIN LAYOUT ===== -->
+    <main class="editor-layout">
+        
+        <!-- LEFT TOOLBAR -->
+        <aside class="toolbar-left">
+            <div class="toolbar-section">
+                <h3 class="toolbar-title">Canvas Size</h3>
+                <div class="size-presets">
+                    <button class="size-btn active" data-w="1080" data-h="1080">□ 1:1</button>
+                    <button class="size-btn" data-w="1080" data-h="1350">▭ 4:5</button>
+                    <button class="size-btn" data-w="1200" data-h="1200">□ 1200²</button>
+                    <button class="size-btn" data-w="1920" data-h="1080">▭ 16:9</button>
+                </div>
+                <div class="custom-size">
+                    <input type="number" id="canvas-w" value="1200" min="400" max="4000">
+                    <span>×</span>
+                    <input type="number" id="canvas-h" value="1200" min="400" max="4000">
+                    <button id="apply-size" class="btn-small">Apply</button>
+                </div>
+            </div>
+
+            <div class="toolbar-section">
+                <h3 class="toolbar-title">Grid & Align</h3>
+                <label class="toggle-label">
+                    <input type="checkbox" id="snap-grid" checked>
+                    <span class="toggle-switch"></span>
+                    Snap to Grid
+                </label>
+                <div class="grid-size">
+                    <label>Grid:</label>
+                    <select id="grid-size-select">
+                        <option value="10">10px</option>
+                        <option value="20" selected>20px</option>
+                        <option value="50">50px</option>
+                        <option value="100">100px</option>
+                    </select>
+                </div>
+                <div class="align-buttons">
+                    <button class="align-btn" data-align="left" title="Align Left">⬅</button>
+                    <button class="align-btn" data-align="center-h" title="Center Horizontal">↔</button>
+                    <button class="align-btn" data-align="right" title="Align Right">➡</button>
+                    <button class="align-btn" data-align="top" title="Align Top">⬆</button>
+                    <button class="align-btn" data-align="center-v" title="Center Vertical">↕</button>
+                    <button class="align-btn" data-align="bottom" title="Align Bottom">⬇</button>
+                </div>
+            </div>
+
+            <div class="toolbar-section">
+                <h3 class="toolbar-title">Elements</h3>
+                <div class="element-list">
+                    <button class="element-btn active" data-element="badge">Badge</button>
+                    <button class="element-btn" data-element="title">Title</button>
+                    <button class="element-btn" data-element="quote">Quote Text</button>
+                    <button class="element-btn" data-element="author">Author</button>
+                    <button class="element-btn" data-element="meta">Meta Info</button>
+                    <button class="element-btn" data-element="decoration">Decoration</button>
+                </div>
+                <label class="toggle-label">
+                    <input type="checkbox" id="show-outlines" checked>
+                    <span class="toggle-switch"></span>
+                    Show Outlines
+                </label>
+                <label class="toggle-label">
+                    <input type="checkbox" id="lock-aspect" checked>
+                    <span class="toggle-switch"></span>
+                    Lock Aspect
+                </label>
+            </div>
+        </aside>
+
+        <!-- CANVAS AREA -->
+        <section class="canvas-area">
+            <div class="canvas-wrapper" id="canvas-wrapper">
+                <div class="grid-overlay" id="grid-overlay"></div>
+                <div class="design-canvas" id="design-canvas" style="width: 1200px; height: 1200px;">
+                    
+                    <!-- Background Layer -->
+                    <div class="bg-layer" id="bg-layer"></div>
+                    
+                    <!-- Card Container -->
+                    <div class="card-container" id="card-container" style="left: 60px; top: 60px; width: 1080px; height: 1080px;">
+                        
+                        <!-- Badge Element -->
+                        <div class="editable-element element-badge" id="el-badge" data-element="badge" style="left: 40px; top: 40px;">
+                            <span class="badge-text" contenteditable="true">FEATURED</span>
+                        </div>
+                        
+                        <!-- Title Element -->
+                        <div class="editable-element element-title" id="el-title" data-element="title" style="left: 40px; top: 100px;">
+                            <h2 class="title-text" contenteditable="true">Quote of the Day</h2>
+                        </div>
+                        
+                        <!-- Quote Text Element -->
+                        <div class="editable-element element-quote" id="el-quote" data-element="quote" style="left: 60px; top: 200px; width: 960px;">
+                            <blockquote class="quote-text" contenteditable="true">"The only way to do great work is to love what you do."</blockquote>
+                        </div>
+                        
+                        <!-- Author Element -->
+                        <div class="editable-element element-author" id="el-author" data-element="author" style="left: 60px; bottom: 200px;">
+                            <cite class="author-text" contenteditable="true">— Steve Jobs</cite>
+                        </div>
+                        
+                        <!-- Meta Info Element -->
+                        <div class="editable-element element-meta" id="el-meta" data-element="meta" style="left: 60px; bottom: 120px;">
+                            <span class="meta-text" contenteditable="true">#motivation #goodvibes</span>
+                        </div>
+                        
+                        <!-- Decoration Element -->
+                        <div class="editable-element element-decoration" id="el-decoration" data-element="decoration" style="right: 40px; bottom: 40px;">
+                            <span class="deco-text" contenteditable="true">✦</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Zoom Controls -->
+            <div class="zoom-controls">
+                <button id="zoom-out" class="zoom-btn">−</button>
+                <span id="zoom-level">75%</span>
+                <button id="zoom-in" class="zoom-btn">+</button>
+                <button id="zoom-fit" class="zoom-btn small">Fit</button>
+            </div>
+        </section>
+
+        <!-- RIGHT PANEL - PROPERTIES -->
+        <aside class="properties-panel">
+            <div class="panel-section">
+                <h3 class="panel-title">Background</h3>
+                <div class="prop-group">
+                    <label>Type</label>
+                    <select id="bg-type">
+                        <option value="solid">Solid Color</option>
+                        <option value="gradient" selected>Gradient</option>
+                        <option value="image">Image</option>
+                    </select>
+                </div>
+                <div class="prop-group bg-solid-group" style="display:none;">
+                    <label>Color</label>
+                    <input type="color" id="bg-color" value="#00aaff">
+                </div>
+                <div class="prop-group bg-gradient-group">
+                    <div class="gradient-row">
+                        <label>Start</label>
+                        <input type="color" id="grad-start" value="#00aaff">
+                        <input type="text" id="grad-start-hex" value="#00aaff" class="hex-input">
+                    </div>
+                    <div class="gradient-row">
+                        <label>End</label>
+                        <input type="color" id="grad-end" value="#0066cc">
+                        <input type="text" id="grad-end-hex" value="#0066cc" class="hex-input">
+                    </div>
+                    <div class="gradient-row">
+                        <label>Direction</label>
+                        <select id="grad-direction">
+                            <option value="180deg" selected>↓ Bottom</option>
+                            <option value="0deg">↑ Top</option>
+                            <option value="90deg">→ Right</option>
+                            <option value="270deg">← Left</option>
+                            <option value="135deg">↘ Diagonal</option>
+                            <option value="45deg">↗ Diagonal</option>
+                            <option value="radial">◉ Radial</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">Card Style</h3>
+                <div class="prop-group">
+                    <label>Background</label>
+                    <input type="color" id="card-bg" value="#ffffff">
+                    <label class="small-label">Opacity</label>
+                    <input type="range" id="card-opacity" min="0" max="100" value="95">
+                </div>
+                <div class="prop-group">
+                    <label>Border Radius</label>
+                    <input type="range" id="card-radius" min="0" max="80" value="20">
+                    <span class="range-value" id="card-radius-val">20px</span>
+                </div>
+                <div class="prop-group">
+                    <label>Padding</label>
+                    <input type="range" id="card-padding" min="0" max="100" value="50">
+                    <span class="range-value" id="card-padding-val">50px</span>
+                </div>
+                <div class="prop-group">
+                    <label>Shadow</label>
+                    <select id="card-shadow">
+                        <option value="none">None</option>
+                        <option value="0 10px 40px rgba(0,0,0,0.15)" selected>Soft</option>
+                        <option value="0 20px 60px rgba(0,0,0,0.25)">Strong</option>
+                        <option value="0 4px 20px rgba(0,0,0,0.1)">Subtle</option>
+                        <option value="0 0 0 4px rgba(0,170,255,0.3)">Glow Blue</option>
+                        <option value="inset 0 2px 10px rgba(0,0,0,0.1)">Inset</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">Typography</h3>
+                <div class="prop-group">
+                    <label>Font Family</label>
+                    <select id="font-family">
+                        <option value="'Poppins', sans-serif" selected>Poppins</option>
+                        <option value="'Inter', sans-serif">Inter</option>
+                        <option value="'Playfair Display', serif">Playfair Display</option>
+                        <option value="'Montserrat', sans-serif">Montserrat</option>
+                        <option value="'Lora', serif">Lora</option>
+                        <option value="'Raleway', sans-serif">Raleway</option>
+                    </select>
+                </div>
+                
+                <!-- Quote Text Props -->
+                <div class="prop-group">
+                    <label>Quote Size</label>
+                    <input type="range" id="quote-size" min="24" max="72" value="42">
+                    <span class="range-value" id="quote-size-val">42px</span>
+                </div>
+                <div class="prop-group">
+                    <label>Quote Weight</label>
+                    <select id="quote-weight">
+                        <option value="300">Light</option>
+                        <option value="400">Regular</option>
+                        <option value="500">Medium</option>
+                        <option value="600" selected>Semi-Bold</option>
+                        <option value="700">Bold</option>
+                        <option value="800">Extra Bold</option>
+                    </select>
+                </div>
+                <div class="prop-group">
+                    <label>Quote Color</label>
+                    <input type="color" id="quote-color" value="#1a1a1a">
+                </div>
+                
+                <!-- Author Props -->
+                <div class="prop-group">
+                    <label>Author Size</label>
+                    <input type="range" id="author-size" min="14" max="36" value="20">
+                    <span class="range-value" id="author-size-val">20px</span>
+                </div>
+                <div class="prop-group">
+                    <label>Author Color</label>
+                    <input type="color" id="author-color" value="#666666">
+                </div>
+                
+                <!-- Badge Props -->
+                <div class="prop-group">
+                    <label>Badge BG</label>
+                    <input type="color" id="badge-bg" value="#00aaff">
+                </div>
+                <div class="prop-group">
+                    <label>Badge Text</label>
+                    <input type="color" id="badge-color" value="#ffffff">
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3 class="panel-title">Accents</h3>
+                <div class="prop-group">
+                    <label>Accent Color</label>
+                    <input type="color" id="accent-color" value="#00aaff">
+                </div>
+                <div class="prop-group">
+                    <label>Decoration Size</label>
+                    <input type="range" id="deco-size" min="20" max="120" value="48">
+                    <span class="range-value" id="deco-size-val">48px</span>
+                </div>
+                <div class="prop-group">
+                    <label>Line Accent</label>
+                    <input type="checkbox" id="show-line" checked>
+                    <label class="small-label">Position</label>
+                    <select id="line-position">
+                        <option value="before" selected>Before Quote</option>
+                        <option value="after">After Quote</option>
+                        <option value="none">Hidden</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="panel-section actions-section">
+                <button id="btn-reset" class="btn btn-outline btn-block">Reset to Default</button>
+                <button id="btn-load-sample" class="btn btn-outline btn-block">Load Sample Quote</button>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toast">
+        <span id="toast-msg"></span>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="modal-overlay" id="preview-modal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Template Preview</h3>
+                <button class="modal-close" id="close-preview">&times;</button>
+            </div>
+            <div class="modal-body" id="preview-container"></div>
+            <div class="modal-footer">
+                <button id="download-preview" class="btn btn-primary">Download as PNG</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/qotdedit.js"></script>
+</body>
+</html>
