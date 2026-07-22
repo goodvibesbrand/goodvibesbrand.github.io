@@ -8396,7 +8396,7 @@ const QUOTES_DB = [
         author: "Anonymous",
         category: "renewal",
         tags: ["cellular-renewal", "mindset-refresh", "biological-mirroring"]
-    }
+    },
 {
             id: 99906,
             text: "The greatest pleasure in life is doing what people say you cannot do.",
