@@ -408,9 +408,9 @@
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             // Opening quote: top-left corner
-            ctx.fillText('\u201C', W * 0.04, H * 0.24);
+            ctx.fillText('\u201C', W * 0.08, H * 0.30);
             // Closing quote: bottom-right corner
-            ctx.fillText('\u201D', W * 0.96, H * 0.70);
+            ctx.fillText('\u201D', W * 0.92, H * 0.70);
             ctx.restore();
             
             lines.forEach((line, index) => {
