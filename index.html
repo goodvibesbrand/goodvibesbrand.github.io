@@ -75,9 +75,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- ========== STYLESHEETS ========== -->
-    <link rel="stylesheet" href="css/styles.css" id="layout-1">
-    <link rel="stylesheet" href="css/styles-blue.css" id="layout-2" disabled>
-    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="/css/styles.css" id="layout-1">
+    <link rel="stylesheet" href="/css/styles-blue.css" id="layout-2" disabled>
+    <link rel="stylesheet" href="/css/about.css">
 </head>
 
 <body>
@@ -93,11 +93,10 @@
             </a>
             <nav class="main-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list">
-                    <li><a data-route="/#quote-date" class="nav-link active">Quote of the Day</a></li>
+                    <li><a data-route="/#quote-of-the-day" class="nav-link active">Quote of the Day</a></li>
                     <li><a data-route="/about" class="nav-link">About</a></li>
                     <li><a data-route="/#archive" class="nav-link">Archive</a></li>
                     <li><a data-route="/#subscribe" class="nav-link nav-cta">Subscribe</a></li>
-                    <li><a href="qotdedit.html" class="nav-link" style="display:none;" title="Template Editor (Hidden)">🎨 Editor</a></li>
                 </ul>
             </nav>
             <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -123,7 +122,7 @@
                         <span class="hero-accent">Positive Energy</span>
                     </h1>
                     <p class="hero-subtitle">Handpicked quotes to elevate your mindset, boost your mood, and spread good vibes — every single day.</p>
-                    <a data-route="/#quote-date" href="#quote-date" class="btn btn-primary btn-large">
+                    <a data-route="/#quote-of-the-day" href="#quote-of-the-day" class="btn btn-primary btn-large">
                         <span>Get Today's Quote</span>
                         <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
                     </a>
@@ -141,11 +140,8 @@
                         <time id="quote-date" class="quote-date" datetime=""></time>
                     </header>
 
-                    <!-- Scroll Target (hides FEATURED badge above viewport) -->
-
-
                     <!-- Quote Card (Screenshot Optimized) -->
-                    <article class="quote-card" itemprop="https://schema.org/Quote">
+                    <article class="quote-card" id="quote-card" itemscope itemtype="https://schema.org/Quote">
                         
                         <!-- Quote Content -->
                         <blockquote class="quote-content" itemprop="text">
@@ -845,7 +841,7 @@
                 <div class="footer-col">
                     <h3 class="footer-heading">Explore</h3>
                     <ul class="footer-links">
-                        <li><a data-route="/#quote-date">Quote of the Day</a></li>
+                        <li><a data-route="/#quote-of-the-day">Quote of the Day</a></li>
                         <li><a data-route="/#archive">Browse Categories</a></li>
                         <li><a data-route="/about">About Us</a></li>
                     </ul>
@@ -881,9 +877,9 @@
     </div>
 
     <!-- ===== JAVASCRIPT ===== -->
-    <script src="js/quotes.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/router.js"></script>
-    <script src="js/about.js"></script>
+    <script src="/js/quotes.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/router.js"></script>
+    <script src="/js/about.js"></script>
 </body>
 </html>
