@@ -495,6 +495,22 @@
             ctx.fillText('GVO', W - 30, 25);
             ctx.restore();
             
+            // Centered brand watermark (GOOD / VIBES / ONLY)
+            ctx.save();
+            ctx.globalAlpha = 0.04;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = `900 72px ${fontStack}`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.letterSpacing = '-1.4px';
+            const centerLines = ['GOOD', 'VIBES', 'ONLY'];
+            const centerLineHeight = 85;
+            const centerStartY = H / 2 - (centerLineHeight * 1);
+            centerLines.forEach((line, i) => {
+                ctx.fillText(line, W / 2, centerStartY + (i * centerLineHeight));
+            });
+            ctx.restore();
+            
             // ===== CONVERT TO DOWNLOADABLE IMAGE (Blob method - more reliable) =====
             const fileName = `good-vibes-only-${state.currentQuote.author.replace(/\s+/g, '-').toLowerCase()}-${Date.now()}.png`;
             
