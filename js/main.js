@@ -408,7 +408,7 @@
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             // Opening quote: top-left corner
-            ctx.fillText('\u201C', W * 0.10, H * 0.41);
+            ctx.fillText('\u201C', W * 0.10, H * 0.405);
             // Closing quote: bottom-right corner
             ctx.fillText('\u201D', W * 0.90, H * 0.69);
             ctx.restore();
@@ -484,28 +484,7 @@
             ctx.fillText('goodvibesonlybrand.github.io', W / 2, footerBarY + 62);
             ctx.restore();
             
-            // Category tag (right side of brand line)
-            if (state.currentQuote.category) {
-                const categoryInfo = state.categories[state.currentQuote.category];
-                const categoryText = `${categoryInfo?.icon || '✦'} ${categoryInfo?.name || state.currentQuote.category}`;
-                
-                ctx.font = `500 14px ${fontStack}`;
-                const catWidth = ctx.measureText(categoryText).width + 20;
-                const catHeight = 28;
-                const catX = W - 50 - catWidth;
-                const catYPos = footerBarY + 18;
-                
-                // Category pill
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-                roundRect(ctx, catX, catYPos, catWidth, catHeight, 14);
-                ctx.fill();
-                
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
-                ctx.textAlign = 'left';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(categoryText, catX + 10, catYPos + catHeight / 2);
-            }
-            
+
             // Subtle corner watermark (top-right area) - decorative brand element
             ctx.save();
             ctx.globalAlpha = 0.08;
