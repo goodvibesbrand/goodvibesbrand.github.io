@@ -85,26 +85,85 @@
     }
 
     // ===== TEMPLATE MANAGEMENT =====
-    function loadTemplate() {
+    // Shared template URL - all visitors use this same file
+    const TEMPLATE_URL = 'js/qotd-template.json';
+    const GITHUB_API = 'https://api.github.com/repos/goodvibesbrand/goodvibesbrand.github.io/contents';
+    
+    async function loadTemplate() {
         try {
-            const saved = localStorage.getItem('qotd_template');
-            state.template = saved ? JSON.parse(saved) : { ...DEFAULT_TEMPLATE };
+            // Try loading shared template from repo
+            const response = await fetch(TEMPLATE_URL + '?t=' + Date.now());
+            if (response.ok) {
+                const data = await response.json();
+                state.template = data;
+                console.log('✦ Loaded shared template from server');
+                return;
+            }
         } catch (e) {
-            state.template = { ...DEFAULT_TEMPLATE };
+            console.log('⚠ Could not load remote template, using default');
+        }
+        
+        // Fallback to default
+        state.template = { ...DEFAULT_TEMPLATE };
+    }
+
+    async function saveTemplate() {
+        captureElementPositions();
+        
+        // Save to GitHub so ALL visitors see changes
+        const token = document.getElementById('github-token').value.trim();
+        
+        if (!token) {
+            showToast('⚠ Enter GitHub token to publish, or just preview locally');
+            return;
+        }
+        
+        try {
+            state.template._lastUpdated = new Date().toISOString();
+            const content = btoa(JSON.stringify(state.template, null, 2));
+            
+            // Get current SHA
+            const shaRes = await fetch(`${GITHUB_API}/${TEMPLATE_URL}`, {
+                headers: { 'Authorization': `token ${token}` }
+            });
+            let sha = '';
+            if (shaRes.ok) {
+                const shaData = await shaRes.json();
+                sha = shaData.sha || '';
+            }
+            
+            // Push to GitHub
+            const body = {
+                message: `Update quote image template (${new Date().toLocaleDateString()})`,
+                content: content,
+                sha: sha
+            };
+            
+            const res = await fetch(`${GITHUB_API}/${TEMPLATE_URL}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                },
+                body: JSON.stringify(body)
+            });
+            
+            if (res.ok) {
+                showToast('✅ Template published! All visitors will see your design.');
+            } else {
+                const err = await res.json();
+                showToast('❌ Error: ' + (err.message || 'Could not save'));
+            }
+        } catch (e) {
+            showToast('❌ Error publishing: ' + e.message);
         }
     }
 
-    function saveTemplate() {
-        captureElementPositions();
-        localStorage.setItem('qotd_template', JSON.stringify(state.template));
-        showToast('✅ Template saved successfully!');
-    }
-
     function resetToDefault() {
-        if (!confirm('Reset all settings to default?')) return;
+        if (!confirm('Reset all settings to default? This will affect ALL visitors!')) return;
         state.template = { ...DEFAULT_TEMPLATE };
         applyTemplate();
-        showToast('🔄 Reset to default template');
+        showToast('🔄 Reset to default template (needs publish to take effect)');
     }
 
     function captureElementPositions() {
