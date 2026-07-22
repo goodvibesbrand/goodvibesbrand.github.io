@@ -158,7 +158,7 @@
         
         setTimeout(() => {
             // Update content
-            DOM.quoteText.textContent = `"${state.currentQuote.text}"`;
+            DOM.quoteText.textContent = state.currentQuote.text;
             DOM.quoteAuthor.textContent = `— ${state.currentQuote.author}`;
             
             const categoryInfo = state.categories[state.currentQuote.category];
