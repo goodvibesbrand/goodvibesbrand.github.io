@@ -352,16 +352,7 @@
                 ctx.fill();
             }
             
-            // ===== DECORATIVE QUOTE MARK =====
-            ctx.save();
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
-            ctx.font = '500px Georgia, serif';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('"', W / 2, H * 0.32);
-            ctx.restore();
-            
-            // ===== QUOTE TEXT =====
+            // ===== QUOTE TEXT WITH WRAPPING QUOTES =====
             ctx.fillStyle = '#FFFFFF';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
@@ -401,6 +392,19 @@
             const lineHeight = fontSize * 1.5;
             const totalTextHeight = lines.length * lineHeight;
             const textStartY = (H * 0.42) - (totalTextHeight / 2) + (lineHeight / 2);
+            
+            // ===== WRAPPING DECORATIVE QUOTES =====
+            // Large curly quotes that "hug" the quote text
+            ctx.save();
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.font = '200px Georgia, serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            // Opening quote: upper-left of text block
+            ctx.fillText('\u201C', W * 0.22, textStartY - lineHeight * 0.3);
+            // Closing quote: lower-right of text block  
+            ctx.fillText('\u201D', W * 0.78, textStartY + totalTextHeight - lineHeight * 0.5);
+            ctx.restore();
             
             lines.forEach((line, index) => {
                 const y = textStartY + (index * lineHeight);
