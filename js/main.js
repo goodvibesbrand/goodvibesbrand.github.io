@@ -499,12 +499,12 @@
             ctx.save();
             ctx.globalAlpha = 0.04;
             ctx.fillStyle = '#FFFFFF';
-            ctx.font = `900 72px ${fontStack}`;
+            ctx.font = `900 180px ${fontStack}`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.letterSpacing = '-1.4px';
             const centerLines = ['GOOD', 'VIBES', 'ONLY'];
-            const centerLineHeight = 85;
+            const centerLineHeight = 175;
             const centerStartY = H / 2 - (centerLineHeight * 1);
             centerLines.forEach((line, i) => {
                 ctx.fillText(line, W / 2, centerStartY + (i * centerLineHeight));
