@@ -1814,13 +1814,7 @@ const QUOTES_DB = [
         category: "creativity",
         tags: ["heart-creation", "mind-building", "balance"]
     },
-{
-        id: 264,
-        text: "The key question isn't 'What fosters creativity?' But it is: Why in God's name isn't everyone creative? Where was the human potential lost?",
-        author: "Abraham Maslow",
-        category: "creativity",
-        tags: ["fostering", "human-potential", "lost-creativity"]
-    },
+
 {
         id: 267,
         text: "It always seems impossible until it's done.",
@@ -3531,7 +3525,7 @@ const QUOTES_DB = [
     },
 {
         id: 618,
-        text: "Every great achievement started as a dream in someone's heart. Why not yours?",
+        text: "Every great achievement started as a dream in someone's heart.",
         author: "Anonymous",
         category: "dreams",
         tags: ["heart-dreams", "great-achievements", "why-not-you"]
@@ -4985,13 +4979,7 @@ const QUOTES_DB = [
         category: "transformation",
         tags: ["stars-darkness", "contrast-needed", "shadow-work"]
     },
-{
-        id: 881,
-        text: "The snake sheds its skin because it no longer serves its growth. What are you shedding?",
-        author: "Anonymous",
-        category: "transformation",
-        tags: ["shedding", "snake-metaphor", "release"]
-    },
+
 {
         id: 882,
         text: "Embrace uncertainty. Some of the most beautiful chapters won't have titles until much later.",
@@ -6280,13 +6268,7 @@ const QUOTES_DB = [
         category: "authenticity",
         tags: ["born-original", "die-copy", "legacy"]
     },
-{
-        id: 1083,
-        text: "Authenticity attracts. People can smell fake from miles away.",
-        author: "Anonymous",
-        category: "authenticity",
-        tags: ["authenticity-attracts", "fake-detection", "intuition"]
-    },
+
 {
         id: 1084,
         text: "Don't change so people will like you. Be yourself and the right people will love the real you.",
