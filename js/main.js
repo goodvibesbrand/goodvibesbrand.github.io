@@ -466,13 +466,13 @@
             ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
             ctx.fillRect(0, footerBarY, W, 1);
             
-            // Brand logo mark (left side)
+            // Brand logo mark (centered with balanced stars)
             ctx.save();
             ctx.fillStyle = '#FFFFFF';
             ctx.font = `700 20px ${fontStack}`;
-            ctx.textAlign = 'left';
+            ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText('✦ GOOD VIBES ONLY', 50, footerBarY + 32);
+            ctx.fillText('✦ Good Vibes Only ✦', W / 2, footerBarY + 32);
             ctx.restore();
             
             // Website URL watermark (center/bottom - prominent)
